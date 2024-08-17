@@ -1,7 +1,7 @@
 :root {
     --primary-color: #81A1C1;
     --primary-color-rgb: 129,161,193;
-    --background-color: #4C566A;
+    --background-color: #3b658c;
     --text-color: #ECEFF4;
 }
 
@@ -11,9 +11,10 @@
 
 body {
     background-color: var(--background-color);
-    color: #ECEFF4;
+    color: #f1f3f2;
     font-size: 18px;
     line-height: 1.8;
+    font-family: "Noto Sans KR", sans-serif;
 }
 
 .wrapper {
@@ -21,6 +22,8 @@ body {
     max-width: 30rem;
     margin: 10vh auto;
     padding: 1rem 1rem;
+    text-align: center;
+    font-size: 20px;
 }
 
 .title {
@@ -35,7 +38,8 @@ body {
 }
 
 .title .first {
-    text-align: left;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 .title .last {
@@ -76,14 +80,19 @@ body {
 
 ul {
     padding-left: 1rem;
+    list-style-type: none;
+}
+.year-time {
+    margin-top: 20px;
+    text-align: center;
 }
 
-footer {
-    position: fixed;
-    bottom: 1rem;
-    right: 1rem;
+.year-time h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
 }
 
-footer a {
-    color: #81A1C1;
+.year-time p {
+    font-size: 1em;
+    margin: 5px 0;
 }

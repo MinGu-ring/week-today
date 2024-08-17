@@ -1,5 +1,3 @@
-'use strict'
-
 /**
  * 주어진 년도가 윤년인지 반환합니다.
  * @param {number} year
@@ -111,31 +109,51 @@ function formatDate(date) {
 }
 
 /**
+ * 1년의 시간, 분, 초를 계산하고 DOM에 표시합니다.
+ */
+function calculateYear() {
+    const currentYear = new Date().getFullYear();
+    const daysInYear = isLeap(currentYear) ? 366 : 365;
+    const hoursInDay = 24;
+    const minutesInHour = 60;
+    const secondsInMinute = 60;
+
+    const hoursInYear = daysInYear * hoursInDay;
+    const minutesInYear = hoursInYear * minutesInHour;
+    const secondsInYear = minutesInYear * secondsInMinute;
+
+    document.getElementById('hours').textContent = `${hoursInYear.toLocaleString()} 시간`;
+    document.getElementById('minutes').textContent = `${minutesInYear.toLocaleString()} 분`;
+    document.getElementById('seconds').textContent = `${secondsInYear.toLocaleString()} 초`;
+}
+
+/**
  * 주어진 날을 기반으로 DOM에 정보를 채워 넣습니다.
  * @param {Date} date
  * @returns {undefined}
  */
 function renderPage(date) {
-    const week_number = weekNumber(date)
+    const week_number = weekNumber(date);
 
-    const week_number_dom = document.getElementById('week-number')
-    week_number_dom.innerText = week_number
+    const week_number_dom = document.getElementById('week-number');
+    week_number_dom.innerText = week_number;
 
-    const week_percentage_dom = document.getElementById('week-percentage')
-    const week_progress_dom = document.querySelector('.progress-bar .progress')
-    const weekPercentage = getPercentageOfWeek(date)
-    week_progress_dom.style['width'] = weekPercentage * 100 + '%'
-    week_percentage_dom.innerText = toPercentage(weekPercentage)
+    const last_week_dom = document.getElementById('last-week');
+    last_week_dom.innerText = lastWeek(date.getFullYear());
 
-    const today_dom = document.getElementById('today')
-    today_dom.innerText = formatDate(date)
+    calculateYear();
 
-    const last_week_dom = document.getElementById('last-week')
-    last_week_dom.innerText = lastWeek(date.getYear())
+    // 올해의 퍼센티지를 표시하는 부분
+    const year_percentage_dom = document.getElementById('year-percentage');      // 올해의 진행률 텍스트
+    const year_progress_dom = document.querySelector('.progress-bar .progress'); // 프로그래스 바
+    const yearPercentage = getYearPercentage();                                  // 올해의 진행률 계산
+    year_progress_dom.style['width'] = yearPercentage * 100 + '%';               // 프로그래스 바의 너비 설정
+    year_percentage_dom.innerText = toPercentage(yearPercentage);                // 텍스트로 진행률 표시
 
-    const year_percentage_dom = document.getElementById('year-percentage')
-    year_percentage_dom.innerText = toPercentage(getYearPercentage())
+    const today_dom = document.getElementById('today');
+    today_dom.innerText = formatDate(date);
 }
+
 
 /**
  * 올해가 지난 정도를 구간 [0, 1]의 숫자로 반환합니다.
