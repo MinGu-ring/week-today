@@ -59,6 +59,9 @@ body {
     height: 2rem;
     border-radius: 50px;
     border: 1px solid var(--text-color);
+    display: flex; /* 추가 */
+    align-items: center; /* 추가 */
+    justify-content: center; /* 추가 */
 }
 
 .progress-bar .progress {
@@ -95,4 +98,42 @@ ul {
 .year-time p {
     font-size: 1em;
     margin: 5px 0;
+}
+
+/* 모바일 대응 (화면 너비가 400px 이하일 때 적용) */
+@media screen and (max-width: 400px) {
+    body {
+        font-size: 16px;
+    }
+
+    .wrapper {
+        margin: 5vh auto;
+        padding: 0.5rem 1rem;
+        font-size: 18px;
+    }
+
+    .title {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .week-number {
+        font-size: 130%;
+    }
+
+    .progress-bar .bar {
+        height: 1.5rem;
+    }
+
+    .progress-bar .description {
+        font-size: 0.8rem;
+    }
+
+    .year-time h2 {
+        font-size: 1.1em;
+    }
+
+    .year-time p {
+        font-size: 0.9em;
+    }
 }
