@@ -2,3 +2,5 @@ User-agent: *
 Disallow: /
 User-agent: Yeti
 Allow: /
+
+Mozilla/5.0 (compatible; Yeti/1.1; +https://naver.me/spd)
